@@ -16,5 +16,5 @@ jobs:
           echo 'I will always print except when its cancelled'
           echo ${{inputs.title}}
       - name: Run this if title equals RUN
-        if: contains('RUN', inputs.title)
+        if: contains(inputs.title, 'RUN')
         run: echo "Title value is RUN and hence running this step"
