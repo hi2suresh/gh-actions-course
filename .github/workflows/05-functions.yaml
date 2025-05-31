@@ -20,7 +20,9 @@ jobs:
         run: echo 'I will print if any of previous step fails.'
       - name: I will execute
         if: ${{!cancelled()}}
-        run: echo 'I will always print except when its cancelled'
+        run: |
+          echo 'I will always print except when its cancelled'
+          echo ${{inputs.title}}
       - name: Run this if title equals RUN
         if: contains(inputs.title, 'RUN')
         run: echo "Title value is RUN and hence running this step"
