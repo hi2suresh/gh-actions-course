@@ -28,7 +28,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.target }}
-    if: ${{ !github.event.inputs.dry-run }}
+    if: ${{ github.event.inputs.dry-run != 'true' }}
+    # needs: build
     steps:
       - name: Deploy
         run: echo "Deploying the application to... ${{ github.event.inputs.target }}"
