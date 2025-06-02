@@ -1,4 +1,4 @@
-name: 0 3- Contexts
+name: 03- Contexts
 run-name: 03 - Contexts | DEBUG - ${{ inputs.debug }}
 
 on:
