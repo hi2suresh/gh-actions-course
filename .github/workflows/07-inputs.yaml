@@ -1,0 +1,34 @@
+name: 07-inputs
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        type: boolean
+        description: Skip the actual deployment and just simulate it
+        default: false
+      target:
+        type: environment
+        required: true
+        description: The target environment for deployment
+      tag:
+        type: choice
+        description: Release tag for the deployment
+        options:
+          - v1
+          - v2
+          - v3
+        default: v3
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: echo "Building the application from... ${{ github.event.inputs.tag }}"
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.target }}
+    if: ${{ !github.event.inputs.dry-run }}
+    steps:
+      - name: Deploy
+        run: echo "Deploying the application to... ${{ github.event.inputs.target }}"
